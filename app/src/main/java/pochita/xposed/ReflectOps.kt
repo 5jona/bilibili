@@ -32,6 +32,17 @@ internal object ReflectOps {
         }.getOrNull()
     }
 
+    fun getStaticField(ownerClass: Class<*>, fieldName: String): Any? =
+        runCatching {
+            ownerClass.getDeclaredField(fieldName).apply { isAccessible = true }.get(null)
+        }.getOrNull()
+
+    fun setStaticField(ownerClass: Class<*>, fieldName: String, value: Any?): Boolean =
+        runCatching {
+            ownerClass.getDeclaredField(fieldName).apply { isAccessible = true }.set(null, value)
+            true
+        }.getOrDefault(false)
+
     fun setField(target: Any?, fieldName: String, value: Any?): Boolean {
         if (target == null) return false
         var cls: Class<*>? = target.javaClass

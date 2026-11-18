@@ -4,15 +4,17 @@ import android.app.Application
 import android.content.Context
 import pochita.bilibili.proto.HistoryProtoCodec
 import pochita.bilibili.ui.HistorySettingsUiController
+import pochita.bilibili.ui.PlaybackSpeedUiController
 import pochita.history.hook.CloudIsolationHooks
 import pochita.history.hook.HistoryMossHooks
 import pochita.history.hook.HistorySettingsUiHooks
 import pochita.history.hook.PlaybackCaptureHooks
 import pochita.history.hook.ResumePlaybackHooks
+import pochita.speed.hook.PlaybackSpeedHooks
 import pochita.xposed.HookRuntime
 
 /**
- * Top-level module coordinator installing all Bilibili local history hook groups inside
+ * Top-level module coordinator installing all Bilibili feature hook groups inside
  * `tv.danmaku.bili`.
  */
 internal class BiliLocalHistoryModule(
@@ -21,10 +23,15 @@ internal class BiliLocalHistoryModule(
     private val context = HistoryModuleContext(runtime)
     private val protoCodec = HistoryProtoCodec(context)
     private val uiController = HistorySettingsUiController(context)
+    private val speedUiController = PlaybackSpeedUiController(
+        runtime = runtime,
+        speedPrefs = context.speedPrefs,
+        appContextProvider = context::ensureContext,
+    )
 
     /**
      * Installs application bootstrap, cloud isolation, metadata capture, resume override,
-     * `HistoryMoss` bridge, and settings UI hooks.
+     * `HistoryMoss` bridge, settings UI hooks, and unlocked playback speed controls.
      */
     fun install() {
         installApplicationBootstrapHook()
@@ -33,6 +40,7 @@ internal class BiliLocalHistoryModule(
         ResumePlaybackHooks(context, protoCodec).install()
         HistoryMossHooks(context, protoCodec).install()
         HistorySettingsUiHooks(runtime, uiController).install()
+        PlaybackSpeedHooks(runtime, context.speedPrefs, speedUiController).install()
     }
 
     private fun installApplicationBootstrapHook() {

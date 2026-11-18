@@ -8,17 +8,21 @@ An LSPosed (API 102) module for Android Bilibili (`tv.danmaku.bili`) that provid
 - **Mutually Exclusive Settings Controls**: Extends the three-dot History Settings menu inside Bilibili (`HistoryMoreDialog` and `ListThreePointMenuDialogFragment`) with mutually exclusive controls for Cloud History, Local Device Cloud Filter, and Local History. Cloud history and local history cannot be enabled simultaneously, while both can remain turned off together.
 - **Native History UI Integration**: Serves paginated cursor lists, keyword search, item deletion, and clear operations from a private SQLite database (`bili_local_history.db`) through `HistoryMoss` gRPC hooks, hiding the closed-history warning banner and triggering live list refreshes on toggle.
 - **Local Playback Resume**: Synthesizes local resume timestamps on `KPlayViewUniteReply.getHistory` while bypassing cloud and KVDB resume caches when cloud history is closed.
+- **Playback Speed Unlocking & Long-Press Customization**: Unlocks built-in playback speed presets (`0.25X`, `0.5X`, `0.75X`, `1.0X`, `1.25X`, `1.5X`, `2.0X`, `2.5X`, `3.0X`, `4.0X`), removes the high-framerate speed restriction on 50fps+ videos, adds one-time custom playback speed adjustment (`0.1X ~ 8.0X`), and embeds persistent custom long-press speed configuration (`0.1X ~ 8.0X` with quick presets and manual input) inside video player speed panels across both `theseus` and `theseus2`.
 
 ## Architecture
 
 ```text
 app/src/main/java/pochita/
 ├── xposed/                     # LSPosed API 102 entrypoint, hook DSL, reflection utilities, coroutine probe
-├── config/                     # Preference constants and host SharedPreferences accessor
+├── config/                     # Preference constants and host SharedPreferences accessors
 ├── bilibili/
 │   ├── contract/               # Host package/class descriptors and localized UI strings
 │   ├── proto/                  # HistoryMoss protobuf reply and resume payload builders
-│   └── ui/                     # HistoryFragmentV3, settings dialog injection, live list refresher
+│   └── ui/                     # History settings dialogs, speed panel views/controllers, and Compose interop bridge
+├── speed/
+│   ├── hook/                   # Playback speed hook registration and host option list interception
+│   └── SpeedSpec.kt            # Normalization, formatting, preset definitions, and slider mapping
 └── history/
     ├── data/                   # Record model, HistoryStore interface, SQL spec, SQLite store
     ├── domain/                 # Formatters, MetadataCache, PlaybackHistoryRecorder, HistorySwitchCoordinator

@@ -13,8 +13,22 @@ internal object BiliContracts {
 
     const val KOTLIN_UNIT = "kotlin.Unit"
     const val KOTLIN_LAZY = "kotlin.Lazy"
+    const val KOTLIN_FUNCTION0 = "kotlin.jvm.functions.Function0"
+    const val KOTLIN_FUNCTION1 = "kotlin.jvm.functions.Function1"
     const val KOTLIN_FUNCTION2 = "kotlin.jvm.functions.Function2"
+    const val KOTLIN_FUNCTION3 = "kotlin.jvm.functions.Function3"
     const val ANDROIDX_FRAGMENT = "androidx.fragment.app.Fragment"
+
+    const val COMPOSE_MODIFIER = "androidx.compose.ui.Modifier"
+    const val COMPOSE_MODIFIER_COMPANION = "androidx.compose.ui.Modifier\$Companion"
+    const val COMPOSE_COMPOSER = "androidx.compose.runtime.Composer"
+    const val COMPOSE_SCOPE_UPDATE = "androidx.compose.runtime.ScopeUpdateScope"
+    const val COMPOSE_RECOMPOSE_SCOPE_IMPL_KT = "androidx.compose.runtime.RecomposeScopeImplKt"
+    const val COMPOSE_ANDROID_VIEW = "androidx.compose.ui.viewinterop.AndroidView_androidKt"
+    const val COMPOSE_SIZE_KT = "androidx.compose.foundation.layout.SizeKt"
+    const val KOTLINX_COROUTINE_SCOPE = "kotlinx.coroutines.CoroutineScope"
+    const val KOTLINX_COROUTINE_SCOPE_KT = "kotlinx.coroutines.CoroutineScopeKt"
+    const val JAVA_UTIL_CONCURRENT_CANCELLATION_EX = "java.util.concurrent.CancellationException"
 
     object CloudIsolation {
         const val CLOUD_SYNC_HELPER = "kntr.common.inline.history.PlayerHistoryCloudSyncHelper"
@@ -77,5 +91,33 @@ internal object BiliContracts {
 
         const val PREFIX_DIALOG_SWITCH = "com.bilibili.app.history.HistoryFragmentV3\$getDialogSwitchList\$"
         const val THREE_POINT_DIALOG_HISTORY_TAG = "history"
+    }
+
+    object PlaybackSpeed {
+        // Primary `theseus` player (`playerbizcommonv2` + XML/Compose hybrid)
+        const val MEDIA_RESOURCE = "com.bilibili.lib.media.resource.MediaResource"
+        const val PBC2_SPEED_HELPER = "com.bilibili.playerbizcommonv2.utils.E"
+        const val PBC2_SPEED_OPTION = "com.bilibili.playerbizcommonv2.utils.w"
+        const val PBC2_SPEED_ADAPTER = "com.bilibili.playerbizcommonv2.widget.speed.f"
+        const val PBC2_SCREEN_MODE_LANDSCAPE_FULLSCREEN = "LANDSCAPE_FULLSCREEN"
+        const val PBC2_FUNCTION_WIDGET_TOKEN = "tv.danmaku.biliplayerv2.service.FunctionWidgetToken"
+
+        const val THESEUS_SPEED_WIDGET = "com.bilibili.ship.theseus.united.page.speed.TheseusSpeedFunctionWidget"
+        const val THESEUS_SPEED_DIALOG_PANEL = "com.bilibili.ship.theseus.united.page.speed.h"
+        const val STORY_LONG_PRESS_SERVICE = "com.bilibili.video.story.action.StoryLongPressService"
+
+        // Next-gen `theseus2` player (`playerbizcommon3` + Compose)
+        const val PBC3_SPEED_HELPER = "com.bilibili.playerbizcommon3.utils.o"
+        const val PBC3_SPEED_OPTION = "com.bilibili.playerbizcommon3.utils.l"
+        const val PBC3_PANEL_STATE = "ow0.e"
+        const val PBC3_PANEL_HELPER = "ow0.l"
+        const val PBC3_SPEED_CONTEXT = "ow0.b"
+
+        const val THESEUS2_KEEL_CONTROLLER = "com.bilibili.ship.theseus2.keel.player.m"
+        const val THESEUS2_LONG_PRESS_RESOLVER = "UC0.a"
+        const val THESEUS2_SPEED_DIALOG_PANEL = "com.bilibili.ship.theseus2.united.page.speed.c"
+        const val THESEUS2_SPEED_CLICK_CALLBACK = "com.bilibili.ship.theseus2.united.page.speed.l"
+        const val THESEUS2_THEME_HELPER = "com.bilibili.compose.theme.BiliTheme"
+        const val COMPOSE_COLOR_KT = "androidx.compose.ui.graphics.ColorKt"
     }
 }

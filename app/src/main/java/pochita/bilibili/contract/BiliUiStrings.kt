@@ -36,4 +36,26 @@ internal object BiliUiStrings {
     }
 
     fun formatResumeToast(formattedTime: String): String = "已为您定位至 $formattedTime"
+
+    object PlaybackSpeed {
+        const val SECTION_LONG_PRESS = "长按倍速"
+        const val SECTION_NORMAL_SPEED = "播放倍速"
+        const val ACTION_CUSTOM = "自定义"
+        const val HINT_SPEED_RANGE = "0.1X ~ 8.0X"
+
+        const val DIALOG_TITLE_NORMAL = "自定义播放倍速"
+        const val DIALOG_SUBTITLE_NORMAL = "可设置倍率范围：0.1X ~ 8.0X"
+        const val DIALOG_TITLE_LONG_PRESS = "自定义长按倍速"
+        const val DIALOG_SUBTITLE_LONG_PRESS = "长按视频时触发（0.1X ~ 8.0X）"
+
+        const val INPUT_HINT = "输入 0.1 ~ 8.0 之间的数值"
+        const val ERROR_INVALID_RANGE = "请输入 0.1 ~ 8.0 之间的有效倍速"
+        const val BUTTON_CONFIRM = "确定"
+        const val BUTTON_CANCEL = "取消"
+        const val BUTTON_RESET_NORMAL = "恢复 1.0X"
+        const val BUTTON_RESET_LONG_PRESS = "重置 2.0X"
+
+        fun formatNormalSwitchedToast(speedLabel: String): String = "已切换为 $speedLabel 倍速"
+        fun formatLongPressUpdatedToast(speedLabel: String): String = "长按倍速已设为 $speedLabel"
+    }
 }

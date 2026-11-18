@@ -2,6 +2,8 @@ package pochita.history
 
 import android.content.Context
 import pochita.config.LocalHistoryPrefs
+import pochita.config.PlaybackSpeedPrefs
+import pochita.speed.SpeedSpec
 import pochita.history.data.HistoryStore
 import pochita.history.data.LocalHistoryDb
 import pochita.history.domain.HistorySwitchCoordinator
@@ -22,6 +24,12 @@ internal class HistoryModuleContext(
 
     val prefs = LocalHistoryPrefs(
         contextProvider = ::ensureContext,
+        onWarn = runtime::logWarn,
+    )
+
+    val speedPrefs = PlaybackSpeedPrefs(
+        contextProvider = ::ensureContext,
+        normalizeSpeed = SpeedSpec::normalizeLongPressSpeed,
         onWarn = runtime::logWarn,
     )
 
