@@ -1,0 +1,6 @@
+minApiVersion=102
+targetApiVersion=102
+defaultExceptionMode=protective
+staticScope=true
+autoHotReload=true
+description=哔哩哔哩本地历史记录功能模块

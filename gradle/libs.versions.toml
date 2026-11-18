@@ -1,0 +1,13 @@
+[versions]
+androidGradlePlugin = "9.4.0"
+junit = "4.13.2"
+kotlin = "2.4.20"
+libxposed = "102.0.0"
+
+[libraries]
+junit = { module = "junit:junit", version.ref = "junit" }
+libxposed-api = { module = "io.github.libxposed:api", version.ref = "libxposed" }
+libxposed-service = { module = "io.github.libxposed:service", version.ref = "libxposed" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

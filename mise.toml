@@ -1,0 +1,39 @@
+[tools]
+android-sdk = "23.0"
+java = "25"
+
+[task_config]
+dir = "{{config_root}}"
+
+[tasks."build:debug"]
+alias = "debug"
+description = "Build debug APK"
+run = "./gradlew assembleDebug"
+
+[tasks."build:release"]
+alias = ["release"]
+description = "Build release APK"
+run = "./gradlew assembleRelease"
+
+[tasks."install:debug"]
+description = "Build and install debug APK onto connected device"
+depends = ["build:debug"]
+run = "android install --apks app/build/outputs/apk/debug/app-debug.apk --install-options=-d"
+
+[tasks."install:release"]
+description = "Build and install release APK onto connected device"
+depends = ["build:release"]
+run = "android install --apks app/build/outputs/apk/release/app-release.apk --install-options=-d"
+
+[tasks.test]
+description = "Run JVM unit tests"
+run = "./gradlew testDebugUnitTest"
+
+[tasks.check]
+description = "Run unit tests and release lint verification"
+depends = ["test"]
+run = "./gradlew lintVitalRelease"
+
+[tasks.clean]
+description = "Clean Gradle build cache"
+run = "./gradlew clean"
